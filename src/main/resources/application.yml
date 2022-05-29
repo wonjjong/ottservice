@@ -2,6 +2,14 @@ spring:
   profiles:
     include: oauth
 
+  jpa:
+    show_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  datasource:
+    
   mvc:
     view:
       prefix: /WEB-INF/

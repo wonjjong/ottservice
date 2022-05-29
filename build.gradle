@@ -37,6 +37,9 @@ dependencies {
 	//jsp
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl'
+
+	//h2
+	implementation 'com.h2database:h2'
 }
 
 tasks.named('test') {
