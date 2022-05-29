@@ -1,16 +1,50 @@
 spring:
-  profiles:
-    include: oauth
-
   jpa:
     show_sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: H2
+    hibernate:
+      ddl-auto: create-drop
+  #    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+  profile:
+    active: oauth2_config
+
+  profiles:
+    include: oauth
+  h2:
+    console:
+      enable: true
+
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    dirverClassName: com.mysql.cj.jdbc.Driver
   datasource:
-    
+    jdbc-url: jdbc:h2:tcp://localhost:9092/mem:testdb;
+    username: sa
+    password:
+    dirver-class-name: org.h2.Driver
+
+
   mvc:
     view:
       prefix: /WEB-INF/
       suffix: .jsp
+
+
+test : 1000
+
+wonjjong:
+  batch:
+    fixedDelay : 1000
+    fixedRate : 1000
+  #spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
+  #spring.jpa.properties.hibernate.dialect.storage_engine=innodb
+  #spring.datasource.hikari.jdbc-url=jdbc:h2:mem://localhost/~/testdb;MODE=MYSQL
+
+  #spring.h2.console.enabled=true
+
+  # springBoot가 시작할 때 해당 URL에 기재된 DB를 만들기 때문에 H2 이슈를 해결할 수 있는 것이다.
+  # spring.datasource.dirverClassName=org.h2.Driver
+  # spring.datasource.url = jdbc:h2:mem:testdb
