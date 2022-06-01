@@ -19,5 +19,6 @@ System.out.println("test");
 </script>
 <body>
  <p2> jspTest.jsp</p2>
+ <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
 </body>
 </html>

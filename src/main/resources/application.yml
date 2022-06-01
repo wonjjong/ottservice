@@ -8,27 +8,27 @@ spring:
 #      hibernate:
 #        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
-  profiles:
-    include: oauth
-#  h2:
+  #  h2:
 #    console:
 #      enable: true
 
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    dirverClassName: com.mysql.cj.jdbc.Driver
+  profiles:
+    include: oauth
+
   datasource:
-    jdbc-url: jdbc:h2:tcp://localhost:9092/mem:testdb;
-    username: sa
-    password:
-    dirver-class-name:  com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:mem:testdb
+    dirverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:tcp://localhost:9092/mem:testdb
+      username: sa
+      password:
 
-
-  mvc:
-    view:
-      prefix: /WEB-INF/
-      suffix: .jsp
-
+# jsp 사용시 주석 해제
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/
+#      suffix: .jsp
 
 test : 1000
 
