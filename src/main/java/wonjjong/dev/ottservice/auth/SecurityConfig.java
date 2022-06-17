@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import wonjjong.dev.ottservice.domain.user.Role;
+/*
 
 //http://localhost:8080/login/oauth2/code/google
 @RequiredArgsConstructor
@@ -65,3 +66,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .userService(customOAuth2UserService);
     }
 }
+*/

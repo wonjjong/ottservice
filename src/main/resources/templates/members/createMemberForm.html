@@ -1,8 +1,14 @@
-<!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>회원가입 </title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css"/>
 </head>
 <body>
 
@@ -22,7 +28,16 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+    <label for="exampleColorInput" class="form-label">Color picker</label>
+    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
 <div th:insert="~{layout/layout_footer :: footerFragment }"></div>
 </body>
 
