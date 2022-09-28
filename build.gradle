@@ -19,30 +19,30 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // jsp 사용시에는 주석처리
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+
 	implementation 'org.springframework.boot:spring-boot-devtools'
 
-	//jpa
+	//JPA
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	//spring-security, oauth
-//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//Spring Security , Oauth
+/*	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-security'*/
 
-	/*
-	jsp 라이브러리
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation 'javax.servlet:jstl'
-	*/
-
-	//h2
+	//H2
 	implementation 'com.h2database:h2'
+
+	//Swagger
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
 }
 
 tasks.named('test') {

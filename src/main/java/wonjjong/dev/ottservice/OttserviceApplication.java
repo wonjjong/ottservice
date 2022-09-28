@@ -18,7 +18,7 @@ public class OttserviceApplication  implements CommandLineRunner {
     private final UserRepository userRepository;
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
         User user = new User();
         user.setEmail("wonjjong.dev@gmail.com");
 		userRepository.save(user);
