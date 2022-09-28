@@ -14,6 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 class OttserviceApplicationTests {
 
 	MockMvc mockMvc;
+
 	@Autowired
 	WebApplicationContext context;
 

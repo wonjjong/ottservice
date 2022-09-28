@@ -8,7 +8,7 @@ public class HelloController {
 
     @RequestMapping("/")
     public String home() {
-        return "/members/createMemberForm";
+        return "home";
     }
 
     @RequestMapping("/jsp_test")
