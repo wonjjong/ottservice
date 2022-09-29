@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="admin/layout/layout_header :: layout_header(~{::meta}, ~{::title}, ~{::link}, ~{::script})">
+</head>
+
+<body class="sb-nav-fixed">
+<div th:replace="admin/layout/layout_top_navi :: layout_top_navi"></div>
+
+<div id="layoutSidenav">
+    <div th:replace="admin/layout/layout_side_navi :: layout_side_navi"></div>
+
+    <div layout:fragment="layout_content"></div>
+
+    <div th:replace="admin/layout/layout_footer :: layout_footer"></div>
+</div>
+
+</body>
+</html>
