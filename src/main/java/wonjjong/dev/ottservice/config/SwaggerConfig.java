@@ -10,10 +10,18 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
 
     @Bean
-    public GroupedOpenApi publicApi() {
+    public GroupedOpenApi adkApi() {
         return GroupedOpenApi.builder()
-                .group("v1-definition")
-                .pathsToMatch("/api/**")
+                .group("adk")
+                .pathsToMatch("/adk/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi homeApi() {
+        return GroupedOpenApi.builder()
+                .group("home")
+                .pathsToMatch("/**")
                 .build();
     }
 
