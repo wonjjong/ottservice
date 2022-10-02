@@ -26,14 +26,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-             /*   .antMatchers("/adk/**").permitAll()*/
-              /*  .antMatchers("/admin/**").hasAnyRole("ADMIN") --> 여기때문에 css 적용 안되었음*/
+                .antMatchers("/adk**").hasAnyRole("ADMIN")
                 .antMatchers("/order/**").hasAnyRole("USER");
-     /*   http.csrf().disable()
-                .authorizeRequests(authorize ->
-                        authorize.antMatchers("/**").permitAll()
-                        .anyRequest().permitAll()
-                );*/
 
         return http.build();
     }

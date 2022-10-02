@@ -16,7 +16,7 @@ spring:
 #      enable: true
 
   profiles:
-    include: oauth
+    include: s3, oauth
 
   datasource:
     url: jdbc:h2:mem:testdb
