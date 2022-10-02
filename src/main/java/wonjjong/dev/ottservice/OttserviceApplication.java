@@ -17,6 +17,10 @@ public class OttserviceApplication  implements CommandLineRunner {
 
     private final UserRepository userRepository;
 
+    static {
+        System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true");
+    }
+
 	@Override
 	public void run(String... args) {
         User user = new User();
