@@ -18,14 +18,14 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="./index.html">Homepage</a></li>
-                                <li><a href="categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                                <li><a th:href="@{/home/categories.html}" href="categories.html">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="categories.html">Categories</a></li>
-                                        <li><a href="anime-details.html">Anime Details</a></li>
-                                        <li><a href="anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                        <li><a href="signup.html">Sign Up</a></li>
-                                        <li><a href="login.html">Login</a></li>
+                                        <li><a th:href="@{categories.html}" href="categories.html">Categories</a></li>
+                                        <li><a th:href="@{anime-details.html}" href="anime-details.html">Anime Details</a></li>
+                                        <li><a th:href="@{anime-watching.html}" href="anime-watching.html">Anime Watching</a></li>
+                                        <li><a th:href="@{blog-details.html}" href="blog-details.html">Blog Details</a></li>
+                                        <li><a th:href="@{signup.html}" href="signup.html">Sign Up</a></li>
+                                        <li><a th:href="@{/oauth2/authorization/google}" href="login.html">Login</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="blog.html">Our Blog</a></li>

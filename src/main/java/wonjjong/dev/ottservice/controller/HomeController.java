@@ -12,4 +12,5 @@ public class HomeController {
         return "home/index";
     }
 
+    /*http://localhost:8080/login/oauth2/code/google */
 }
