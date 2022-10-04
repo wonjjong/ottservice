@@ -1,17 +1,18 @@
 package wonjjong.dev.ottservice.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.RequestCacheConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -20,14 +21,28 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().antMatchers("/resources**");
+        return web -> web.ignoring()
+                .antMatchers("/resources/**")
+                .antMatchers("/swagger-ui/**");
     }
 
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
+
         http.authorizeRequests()
-                .antMatchers("/adk**").hasAnyRole("ADMIN")
-                .antMatchers("/order/**").hasAnyRole("USER");
+                .antMatchers("/home/**","/").permitAll()
+                .antMatchers("/adk/**").hasAnyRole("ADMIN")
+                .antMatchers("/order/**").hasAnyRole("USER")
+                .anyRequest().authenticated()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .and()
+                .oauth2Login()
+                .defaultSuccessUrl("/") // 기본값이 / 임
+                .userInfoEndpoint()
+                .userService(customOAuth2UserService)
+        ;
 
         return http.build();
     }

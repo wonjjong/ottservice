@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdkController {
 
     @GetMapping("/index")
-    @Operation(summary = "Get All ToDo List") // RestController가 아닌경우에는 해당 어노테이션을 추가해줘야하는 듯 하다.
+    @Operation(summary = "Admin index page") // RestController가 아닌경우에는 해당 어노테이션을 추가해줘야하는 듯 하다.
     public String index() {
         return "admin/index";
     }
