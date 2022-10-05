@@ -1,11 +1,13 @@
 package wonjjong.dev.ottservice;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import wonjjong.dev.ottservice.domain.user.Role;
 import wonjjong.dev.ottservice.domain.user.User;
 import wonjjong.dev.ottservice.domain.user.UserRepository;
 
@@ -23,8 +25,10 @@ public class OttserviceApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-        User user = new User();
-        user.setEmail("wonjjong.dev@gmail.com");
+        User user = User.builder()
+                .email("asf@gmail.com")
+                .name("asd")
+                .role(Role.USER).build();
 		userRepository.save(user);
 	}
 
