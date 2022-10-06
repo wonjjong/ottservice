@@ -42,11 +42,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         // OAuth2 서비스 id (구글, 카카오, 네이버)
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
+
         // OAuth2 로그인 진행 시 키가 되는 필드 값(PK),  어떤 소셜서비스든 그 서비스에서 각 계정마다의 유니크한 id값을 전달 .. 구글은 sub이라는 필드가 유니크 필드이며
         // 네이버는 id라는 필드가 유니크 필드입니다.
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
 
-        // OAuth2UserService
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
         User user = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(user)); // SessionUser (직렬화된 dto 클래스 사용)

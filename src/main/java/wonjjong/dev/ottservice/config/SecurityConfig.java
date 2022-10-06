@@ -23,7 +23,10 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
                 .antMatchers("/resources/**")
-                .antMatchers("/swagger-ui/**");
+                .antMatchers("/v3/api-docs/**")
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/swagger-ui/**")
+                .antMatchers("/h2-console/**");
     }
 
     @Bean
@@ -41,8 +44,7 @@ public class SecurityConfig {
                 .oauth2Login()
                 .defaultSuccessUrl("/") // 기본값이 / 임
                 .userInfoEndpoint()
-                .userService(customOAuth2UserService)
-        ;
+                .userService(customOAuth2UserService);
 
         return http.build();
     }
