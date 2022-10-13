@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,21 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-@Profile("prod")
+//@Profile("prod")
+@Slf4j
 public class S3Service {
     private final AmazonS3Client amazonS3Client;
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
+
+    public String getS3() {
+        String resourceUrl = amazonS3Client.getResourceUrl(bucket, "main_video/1.mp4");
+        System.out.println(resourceUrl);
+//        log.info("resourceUrl = {}", resourceUrl);
+        return resourceUrl;
+
+    }
+
 
     public String uploadFiles(MultipartFile multipartFile, String dirName) throws IOException {
         File uploadFile = convert(multipartFile)  // 파일 변환할 수 없으면 에러
