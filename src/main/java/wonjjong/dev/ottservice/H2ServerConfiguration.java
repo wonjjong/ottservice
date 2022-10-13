@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @Configuration
 //@Profile("prod")
 public class H2ServerConfiguration {
-    @Bean
+/*    @Bean
     @ConfigurationProperties("spring.datasource.hikari") // yml의 설정값을 Set한다.
     public DataSource dataSource() throws SQLException {
         Server.createTcpServer("-tcp",
@@ -24,5 +24,5 @@ public class H2ServerConfiguration {
         ).start();
 
         return new HikariDataSource();
-    }
+    }*/
 }
