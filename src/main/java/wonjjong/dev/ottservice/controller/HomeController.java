@@ -25,4 +25,7 @@ public class HomeController {
     public String signup() {
         return "home/signup";
     }
+
+    @GetMapping("/categories")
+    public String categories() { return "home/categories";}
 }

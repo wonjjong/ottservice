@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import wonjjong.dev.ottservice.domain.user.User;
 import wonjjong.dev.ottservice.domain.user.UserRepository;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -19,11 +21,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userById = userRepository.getById(Long.valueOf(username));
-        if(userById != null) {
-            return new CustomUserDetails(userById);
-        }
-
-        return null;
+        /* application/x-www-form-urlencoded */
+        return new CustomUserDetails(userRepository.findById(Long.valueOf(username)).
+                orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException")));
     }
 }
