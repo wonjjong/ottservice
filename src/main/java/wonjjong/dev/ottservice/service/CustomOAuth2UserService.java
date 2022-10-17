@@ -1,4 +1,4 @@
-package wonjjong.dev.ottservice.config;
+package wonjjong.dev.ottservice.service;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,6 +14,8 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import wonjjong.dev.ottservice.config.OAuthAttributes;
+import wonjjong.dev.ottservice.config.SessionUser;
 import wonjjong.dev.ottservice.domain.user.User;
 import wonjjong.dev.ottservice.domain.user.UserRepository;
 
