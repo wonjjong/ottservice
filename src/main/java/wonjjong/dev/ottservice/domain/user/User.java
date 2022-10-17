@@ -1,9 +1,6 @@
 package wonjjong.dev.ottservice.domain.user;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import wonjjong.dev.ottservice.domain.BaseTimeEntity;
 
 import javax.persistence.*;
