@@ -2,6 +2,8 @@ server:
   port : 8080
 
 spring:
+  messages:
+    basename: messages, errors
   profiles:
     active: dev #기본 활성 프로필
   config:
@@ -15,7 +17,7 @@ spring:
 
   h2:
     console:
-      enable: true
+      enable: false # 인메모리로 실행할경우 false로 설정해야 update시 에러 안남
 
   datasource:
     hikari:
@@ -30,3 +32,5 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+
+
