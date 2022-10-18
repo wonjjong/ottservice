@@ -17,14 +17,19 @@ spring:
 
   h2:
     console:
-      enable: false # 인메모리로 실행할경우 false로 설정해야 update시 에러 안남
+      enable: true
 
   datasource:
-    hikari:
-      driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:tcp://localhost:9092/mem:testdb
-      username: sa
-      password:
+    jdbc-url: jdbc:h2:tcp://localhost/~/testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+#    hikari:
+#      driver-class-name: org.h2.Driver
+#      jdbc-url: jdbc:h2:tcp://localhost/~/testdb
+##      jdbc-url: jdbc:h2:tcp://localhost:9092/testdb
+#      username: sa
+#      password:
 
 logging:
   level:

@@ -28,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public Long saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user).getId();
-
     }
 }
