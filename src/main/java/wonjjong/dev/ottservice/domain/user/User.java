@@ -5,7 +5,7 @@ import wonjjong.dev.ottservice.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name="users")
 @Getter
 @NoArgsConstructor
 @Setter
