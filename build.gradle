@@ -35,7 +35,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	//H2
-	implementation 'com.h2database:h2'
+//	implementation 'com.h2database:h2'
+	implementation 'com.h2database:h2:2.0.204'
 
 	//Swagger
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
