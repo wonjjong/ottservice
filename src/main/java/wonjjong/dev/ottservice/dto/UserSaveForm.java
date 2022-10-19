@@ -1,5 +1,6 @@
 package wonjjong.dev.ottservice.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -12,6 +13,7 @@ public class UserSaveForm {
 
     @NotBlank
     @Email
+    @Schema(description = "이메일", example="wonjjong.dev@gmail.com", required = true)
     private String email;
 
     @NotBlank

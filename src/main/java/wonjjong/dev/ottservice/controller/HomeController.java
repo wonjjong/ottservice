@@ -1,5 +1,8 @@
 package wonjjong.dev.ottservice.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,12 +28,14 @@ import wonjjong.dev.ottservice.service.CustomUserDetailsService;
 @Controller
 @RequestMapping("/home")
 @RequiredArgsConstructor
+@Tag(name = "HomeController" , description = "프론트 메인 컨트롤러")
 @Slf4j
 public class HomeController {
 
     private final CustomUserDetailsService customUserDetailsService;
 
     @GetMapping({"","/","/index"})
+    @Operation(summary="home", description = "home index 리턴")
     public String home() {
         return "home/index";
     }
@@ -47,7 +52,10 @@ public class HomeController {
     }
 
     @PostMapping("/signup") //Form login 방식
-    public String signup(@Validated @ModelAttribute UserSaveForm userSaveForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String signup(@Validated @ModelAttribute
+                             @Parameter(description = "userSaveForm", required = true)
+                             UserSaveForm userSaveForm,
+                         BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()) {
             log.info("errors = {} ", bindingResult);
             //응답코드 확인 400이면 Bad Request, 500이면 서버에러
