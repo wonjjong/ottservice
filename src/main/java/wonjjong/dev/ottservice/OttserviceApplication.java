@@ -25,11 +25,14 @@ public class OttserviceApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-        User user = User.builder()
-                .email("asf@gmail.com")
-                .name("asd")
-                .role(Role.USER).build();
-		userRepository.save(user);
+        for (int i = 0; i < 50; i++) {
+            User user = User.builder()
+                    .email(i + "@gmail.com")
+                    .name("wonjjong"+ i)
+                    .password("pw"+i)
+                    .role(Role.USER).build();
+            userRepository.save(user);
+        }
 	}
 
     public static void main(String[] args) {

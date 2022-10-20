@@ -1,5 +1,5 @@
 server:
-  port : 8080
+  port : 9000
 
 spring:
   messages:
@@ -10,7 +10,6 @@ spring:
     import: application-oauth.yml
 
   jpa:
-    show_sql: true
     database-platform: H2
     hibernate:
       ddl-auto: create-drop
@@ -21,10 +20,12 @@ spring:
 
   datasource:
     hikari:
-      driver-class-name: org.h2.Driver
+#      driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#      jdbc-url: jdbc:p6spy:h2:tcp://localhost/~/test;MODE=LEGACY;
       jdbc-url: jdbc:h2:tcp://localhost/~/test;MODE=LEGACY;
       username: sa
       password:
+      driver-class-name: org.h2.Driver
 
 logging:
   level:
@@ -33,4 +34,7 @@ logging:
         util:
           EC2MetadataUtils: error
 
-
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
