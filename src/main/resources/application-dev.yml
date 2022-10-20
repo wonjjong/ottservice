@@ -5,3 +5,8 @@ cloud:
     region:
       auto: false
       static: eu-central-1
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true

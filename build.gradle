@@ -38,6 +38,9 @@ dependencies {
 //	implementation 'com.h2database:h2'
 	implementation 'com.h2database:h2:2.0.204'
 
+	//p6spy
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1'
+
 	//Swagger
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
 
