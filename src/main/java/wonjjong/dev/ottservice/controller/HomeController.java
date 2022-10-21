@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import wonjjong.dev.ottservice.aws.service.S3Service;
 import wonjjong.dev.ottservice.config.CustomUserDetails;
 import wonjjong.dev.ottservice.domain.user.Role;
 import wonjjong.dev.ottservice.domain.user.User;
@@ -33,6 +35,9 @@ import wonjjong.dev.ottservice.service.CustomUserDetailsService;
 public class HomeController {
 
     private final CustomUserDetailsService customUserDetailsService;
+
+    @Autowired
+    private final S3Service s3Service;
 
     @GetMapping({"","/","/index"})
     @Operation(summary="home", description = "home index 리턴")
@@ -94,6 +99,15 @@ public class HomeController {
         log.info("principle: " + principal.getAttributes());
     }
 
+    @GetMapping("/anime-details")
+    public String animeDetails() {
+        return "home/anime-details";
+    }
+    @GetMapping("/anime-watching")
+    public String animeWatching(Model model) {
+        model.addAttribute("videoPath", s3Service.getS3());
+        return "home/anime-watching";
+    }
 
     @GetMapping("/categories")
     public String categories() { return "home/categories";}
