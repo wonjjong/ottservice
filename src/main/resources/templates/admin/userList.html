@@ -7,7 +7,7 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4">개인회원 관리</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/adk/index}" href="index.html">Dashboard</a></li>
                 <li class="breadcrumb-item active">Tables</li>
             </ol>
             <div class="card mb-4">
@@ -25,27 +25,15 @@
                     DataTable Example
                 </div>
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="datatablesSample">
                         <thead>
                         <tr>
                             <th>이름</th>
                             <th>이메일</th>
                             <th>패스워드</th>
                             <th>역할</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
                         </tr>
                         </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                        </tfoot>
                         <tbody>
                         <tr th:each="user : ${users}">
                             <td th:text="${user.name}">이름</td>
@@ -59,10 +47,23 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var $datatablesSample = $("#datatablesSample").DataTable({
+                ordering: false,
+                select: 'single'
+            });
+
+            $datatablesSample.on('select', function (e, dt, type, indexes) {
+                var rowData = table.rows(indexes).data().toArray();
+                console.log(JSON.stringify(rowData));
+            }).on('dselect', function (e, dt, type, indexes) {
+                var rowData = table.rows(indexes).data().toArray();
+                console.log(JSON.stringify(rowData));
+            });
+
+        });
+    </script>
 </th:block>
 </html>
