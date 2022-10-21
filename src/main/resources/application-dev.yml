@@ -1,10 +1,10 @@
-cloud:
-  aws:
-    stack:
-      auto: false
-    region:
-      auto: false
-      static: eu-central-1
+#cloud:
+#  aws:
+#    stack:
+#      auto: false
+#    region:
+#      auto: false
+#      static: eu-central-1
 
 decorator:
   datasource:
