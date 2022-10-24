@@ -18,7 +18,6 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-//@Profile("prod")
 @Slf4j
 public class S3Service {
     private final AmazonS3Client amazonS3Client;
