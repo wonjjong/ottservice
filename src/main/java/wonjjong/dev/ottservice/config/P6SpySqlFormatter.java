@@ -28,8 +28,14 @@ public class P6SpySqlFormatter implements MessageFormattingStrategy {
 
 	@Override
 	public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql, String url) {
+
 		sql = formatSql(category, sql);
-		return String.format("[%s] | %d ms | %s", category, elapsed, formatSql(category, sql)) + createStack(connectionId,elapsed);
+
+		return FormatStyle.HIGHLIGHT.getFormatter().format(String.format("[%s] | %d ms | %s", category, elapsed, formatSql(category, sql)) + createStack(connectionId,elapsed));
+	}
+
+	private String highlight(String message) {
+		return FormatStyle.HIGHLIGHT.getFormatter().format(message);
 	}
 
 	private String formatSql(String category, String sql) {
