@@ -27,8 +27,6 @@ public class SecurityConfig {
                 .antMatchers("/v3/api-docs/**")
                 .antMatchers("/swagger-ui.html")
                 .antMatchers("/swagger-ui/**")
-                .antMatchers("/**/*.css")
-                .antMatchers("/**/*.js")
                 .antMatchers("/h2-console/**");
     }
 
@@ -36,8 +34,8 @@ public class SecurityConfig {
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/home/**","/adk/**").permitAll()
-                /*.antMatchers("/adk/**").hasAnyRole("ADMIN")*/
+                .antMatchers("/home/**","/","/adk/**").permitAll()
+                .antMatchers("/adk/**").hasAnyRole("ADMIN")
                 .antMatchers("/order/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
                 .and()
