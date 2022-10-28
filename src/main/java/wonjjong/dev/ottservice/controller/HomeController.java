@@ -9,16 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wonjjong.dev.ottservice.aws.service.S3Service;
 import wonjjong.dev.ottservice.config.CustomUserDetails;
@@ -26,6 +26,9 @@ import wonjjong.dev.ottservice.domain.user.Role;
 import wonjjong.dev.ottservice.domain.user.User;
 import wonjjong.dev.ottservice.dto.UserSaveForm;
 import wonjjong.dev.ottservice.service.CustomUserDetailsService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/home")
@@ -48,6 +51,15 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {
         return "home/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null) {
+            new SecurityContextLogoutHandler().logout(request,response,authentication);
+        }
+        return "redirect:/home/login";
     }
 
     @GetMapping("/signup")
@@ -77,7 +89,9 @@ public class HomeController {
                     userSaveForm.getEmail(),
                     userSaveForm.getName(),
                     userSaveForm.getPassword(),
-                    Role.USER)*/
+                    Role.USER)
+                    builder를 써야하는 이유
+                    */ 
         );
 
         log.info("회원가입 성공, ID ={} ", userId);
@@ -88,12 +102,20 @@ public class HomeController {
     }
 
     @GetMapping("/login/form/info")
-    public void formLoginTest(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails) {
-        CustomUserDetails principal = (CustomUserDetails) authentication.getPrincipal();
-        log.info("principle: " + principal.getUsername());
+    @ResponseBody
+    public Authentication formLoginTest(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails) {
+        //postman에서만 안되는 문제 발생
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication1 = securityContext.getAuthentication();
+        authentication1.getPrincipal();
+        return authentication1;
+//        CustomUserDetails principal = (CustomUserDetails) authentication.getPrincipal();
+//        log.info("principle: " + principal.getUsername());
+//        return principal.getUsername();
     }
 
     @GetMapping("/login/auth/info")
+    @ResponseBody
     public void OAuthloginTest(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails) {
         OAuth2User principal = (OAuth2User) authentication.getPrincipal();
         log.info("principle: " + principal.getAttributes());

@@ -28,48 +28,47 @@ public class SecurityConfig {
                 .antMatchers("/v3/api-docs/**")
                 .antMatchers("/swagger-ui.html")
                 .antMatchers("/swagger-ui/**")
+                .antMatchers("/**/*.png")
                 .antMatchers("/**/*.js")
                 .antMatchers("/**/*.css")
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**")
+                .antMatchers("/favicon.ico");
     }
 
     @Bean
-    @Order(2)
+    @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-//                .antMatchers("/home/**","/","/adk/**").permitAll()
-//                .antMatchers("/home/**","/adk/**").permitAll()
-                .antMatchers("/home/**").permitAll()
-//                .antMatchers("/adk/**").hasAnyRole("ADMIN")
+                .antMatchers("/home/**", "/").permitAll()
                 .antMatchers("/order/**").hasAnyRole("USER")
-//                .anyRequest().authenticated()
+                .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/home/login")
                     .loginProcessingUrl("/home/loginProcess")
                     .usernameParameter("email")
                     .defaultSuccessUrl("/home/index")
+                    .failureUrl("/home/login")
                 .and()
                     .logout()
+                    .logoutUrl("/home/logout")
                     .logoutSuccessUrl("/")
+                    .deleteCookies("JSESSIONID","remember-me")
                 .and()
                     .oauth2Login()
                     .defaultSuccessUrl("/") // 기본값이 / 임
                     .userInfoEndpoint()
-                    .userService(customOAuth2UserService);
-
-
+                    .userService(customOAuth2UserService)
+                ;
         return http.build();
     }
-
     @Bean
-    @Order(1)
+    @Order(2)
     public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/adk/login").permitAll()
                 .antMatchers("/adk/**").hasAnyRole("ADMIN")
-//                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/adk/login")
@@ -81,8 +80,6 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/") // 기본값이 / 임
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
-
         return http.build();
     }
-
 }
