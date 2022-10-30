@@ -9,6 +9,7 @@ import wonjjong.dev.ottservice.domain.file.File;
 import wonjjong.dev.ottservice.domain.file.FileRepository;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -18,10 +19,10 @@ public class FileService {
 	private final FileRepository fileRepository;
 
 	public File fileUpload(MultipartFile multipartFile) throws IOException {
-		String originalFilename = multipartFile.getOriginalFilename();
-		String extenstionName = originalFilename.substring(originalFilename.lastIndexOf("."));
-		log.info("extentionName = {} " , extenstionName);
+		String fileName = multipartFile.getOriginalFilename();
+		String fileExtName = fileName.substring(fileName.lastIndexOf(".")+1);
 
+		Map<String, Map<String,Object>> filegrpName;
 		/*
 				1. 지원되는 파일형식인지
 				2. 파일명이 정확한지
@@ -31,7 +32,7 @@ public class FileService {
 
 		long size = multipartFile.getSize();
 		Resource resource = multipartFile.getResource();
-		log.info("originalFilename = {}, size = {}, resource = {}", originalFilename, size, resource.getURI());
+		log.info("originalFilename = {}, size = {}, resource = {}", fileName, size, resource.getURI());
 
 
 		return null;
