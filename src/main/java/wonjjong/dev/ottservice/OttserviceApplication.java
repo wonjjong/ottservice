@@ -40,6 +40,9 @@ public class OttserviceApplication  implements CommandLineRunner {
 //			userRepository.save(user);
            customUserDetailsService.saveUser(user);
         }
+		/*
+		* 진도처리 /수료처리 / 설문 / 시험 / 성적조회/ 수강이력 / 쪽지함 / 챗봇
+		* */
 	}
 
     public static void main(String[] args) {

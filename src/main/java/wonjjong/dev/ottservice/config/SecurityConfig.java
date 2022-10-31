@@ -41,7 +41,6 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .antMatchers("/home/**", "/").permitAll()
-                .antMatchers("/order/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
