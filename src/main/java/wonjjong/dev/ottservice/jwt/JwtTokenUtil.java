@@ -1,4 +1,4 @@
-package wonjjong.dev.ottservice.config;
+package wonjjong.dev.ottservice.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
