@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a id="jwt-test" class="site-btn">Authenticate Now</a>
+<script>
+  $("#jwt-test").on('click', function() {
+    $.post({
+      url : "/api/authenticate",
+      contentType: "application/json",
+      success : function(result) {
+        console.log(result);
+      }
+    });
+  });
+
+</script>
+</body>
+
+</html>
