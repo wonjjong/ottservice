@@ -1,14 +1,17 @@
 package wonjjong.dev.ottservice.jwt;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @CrossOrigin
 @RequiredArgsConstructor
@@ -20,8 +23,8 @@ public class JwtApiContoller {
 
     @PostMapping("/authenticate")
     public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest jwtRequest) throws Exception{
-        authentication(jwtRequest.getUsername(), jwtRequest.getPassword());
-
+        log.info("username = {} , password = {} " , jwtRequest.getUsername(), jwtRequest.getPassword());
+//        authentication(jwtRequest.getUsername(), jwtRequest.getPassword());
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
@@ -30,7 +33,7 @@ public class JwtApiContoller {
 
     private void authentication(String username, String password) throws Exception{
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException ex) {
             throw new DisabledException("USER_DISABLED", ex);
         } catch (BadCredentialsException ex) {

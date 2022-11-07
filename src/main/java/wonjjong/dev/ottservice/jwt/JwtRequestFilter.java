@@ -22,10 +22,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    @Autowired
     private final JwtUserDetailsService jwtUserDetailsService;
-
-    @Autowired
     private final JwtTokenUtil jwtTokenUtil;
 
     @Override
