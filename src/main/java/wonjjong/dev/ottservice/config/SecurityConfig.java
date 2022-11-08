@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import wonjjong.dev.ottservice.jwt.JwtAuthenticationEntryPoint;
 import wonjjong.dev.ottservice.jwt.JwtRequestFilter;
+import wonjjong.dev.ottservice.jwt.JwtUserDetailsService;
 import wonjjong.dev.ottservice.service.CustomOAuth2UserService;
 
 @EnableWebSecurity
@@ -28,16 +29,35 @@ public class SecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
 
+    private final JwtUserDetailsService jwtUserDetailsService;
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+    /*@Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(jwtUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
+        return authenticationManagerBuilder.build();
+    }*/
 
+    /*
+    * @Bean
+public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    return authenticationConfiguration.getAuthenticationManager();
+}
+*
+* authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)).
+    *
+    *
+    * */
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
@@ -64,7 +84,9 @@ public class SecurityConfig {
                     .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                     .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                    .userDetailsService(jwtUserDetailsService);
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -117,3 +139,17 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
+/*
+public class MyCustomDsl extends AbstractHttpConfigurer<MyCustomDsl, HttpSecurity> {
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
+        http.addFilter(new TokenAuthFilter(authenticationManager));
+    }
+
+    public static MyCustomDsl customDsl() {
+        return new MyCustomDsl();
+    }
+}
+*/
