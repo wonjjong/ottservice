@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/home/css/bootstrap.min.css}" href="../../static/home/anime-main/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/home/css/font-awesome.min.css}" href="../../static/home/anime-main/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/home/css/elegant-icons.css}" href="../../static/home/anime-main/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/home/css/plyr.css}" href="../../static/home/anime-main/css/plyr.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/home/css/nice-select.css}" href="../../static/home/anime-main/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/home/css/owl.carousel.min.css}" href="../../static/home/anime-main/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/home/css/slicknav.min.css}" href="../../static/home/anime-main/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/home/css/style.css}" href="../../static/home/anime-main/css/style.css" type="text/css">
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+
+    <script th:src="@{/home/js/jquery-3.3.1.min.js}" src="../../static/home/anime-main/js/jquery-3.3.1.min.js"></script>
+    <script th:src="@{/home/js/bootstrap.min.js}" src="../../static/home/anime-main/js/bootstrap.min.js"></script>
+    <script th:src="@{/home/js/player.js}" src="../../static/home/anime-main/js/player.js"></script>
+    <script th:src="@{/home/js/jquery.nice-select.min.js}" src="../../static/home/anime-main/js/jquery.nice-select.min.js"></script>
+    <script th:src="@{/home/js/mixitup.min.js}" src="../../static/home/anime-main/js/mixitup.min.js"></script>
+    <script th:src="@{/home/js/jquery.slicknav.js}" src="../../static/home/anime-main/js/jquery.slicknav.js"></script>
+    <script th:src="@{/home/js/owl.carousel.min.js}" src="../../static/home/anime-main/js/owl.carousel.min.js"></script>
+    <script th:src="@{/home/js/main.js}" src="../../static/home/anime-main/js/main.js"></script>
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+</head>
+<body>
+<a id="jwt-test" class="site-btn">Authenticate Now</a>
+<script>
+    $("#jwt-test").on('click', function () {
+        let obj = {
+            "username": "0@gmail.com",
+            "password": "pw0"
+        };
+
+        $.post({
+            url: "/api/authenticate",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    });
+
+</script>
+</body>
+
+</html>
