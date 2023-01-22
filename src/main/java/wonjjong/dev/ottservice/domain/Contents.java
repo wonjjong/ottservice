@@ -32,6 +32,7 @@ public class Contents {
 
     @Column
     private Double duration;
+    //태그 필드 필요
 
 
     @Builder

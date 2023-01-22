@@ -11,9 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import wonjjong.dev.ottservice.domain.user.Role;
 import wonjjong.dev.ottservice.domain.user.User;
 import wonjjong.dev.ottservice.domain.user.UserRepository;
-import wonjjong.dev.ottservice.service.CustomUserDetailsService;
-
-import java.util.Optional;
 
 @EnableJpaAuditing
 @SpringBootApplication
@@ -22,7 +19,6 @@ import java.util.Optional;
 public class OttserviceApplication  implements CommandLineRunner {
 
     private final UserRepository userRepository;
-	private final CustomUserDetailsService customUserDetailsService;
 
     static {
         System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true");
@@ -31,18 +27,14 @@ public class OttserviceApplication  implements CommandLineRunner {
 	@Override
 	@Profile("dev")
 	public void run(String... args) {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 50; i++) {
             User user = User.builder()
                     .email(i + "@gmail.com")
                     .name("wonjjong"+ i)
                     .password("pw"+i)
                     .role(Role.USER).build();
-//			userRepository.save(user);
-           customUserDetailsService.saveUser(user);
+            userRepository.save(user);
         }
-		/*
-		* 진도처리 /수료처리 / 설문 / 시험 / 성적조회/ 수강이력 / 쪽지함 / 챗봇
-		* */
 	}
 
     public static void main(String[] args) {
