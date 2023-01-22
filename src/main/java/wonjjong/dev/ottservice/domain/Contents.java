@@ -27,6 +27,11 @@ public class Contents {
     @Column(nullable = false)
     private String videoPath;
 
+    @Column
+    private Long views;
+
+    @Column
+    private Double duration;
     //태그 필드 필요
 
 

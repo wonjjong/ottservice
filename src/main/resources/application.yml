@@ -1,7 +1,15 @@
 server:
   port : 8080
 
+wonjjong:
+  fileUploadPath: D:/test/
+
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # default : 1MB
+      max-request-size: 100MB #defatult : 10MB
+
   messages:
     basename: messages, errors
   profiles:
@@ -38,3 +46,7 @@ decorator:
   datasource:
     p6spy:
       enable-logging: false
+
+
+
+

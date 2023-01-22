@@ -6,6 +6,11 @@
 #      auto: false
 #      static: eu-central-1
 
+spring:
+  redis:
+    host: localhost
+    port: 6379
+
 decorator:
   datasource:
     p6spy:

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import wonjjong.dev.ottservice.domain.user.Role;
@@ -24,6 +25,7 @@ public class OttserviceApplication  implements CommandLineRunner {
     }
 
 	@Override
+	@Profile("dev")
 	public void run(String... args) {
         for (int i = 0; i < 50; i++) {
             User user = User.builder()
