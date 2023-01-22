@@ -35,7 +35,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	//H2
-	implementation 'com.h2database:h2'
+//	implementation 'com.h2database:h2'
+	implementation 'com.h2database:h2:2.0.204'
+
+	//p6spy
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1'
 
 	//Swagger
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
@@ -43,7 +47,13 @@ dependencies {
 	//S3
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
 
+	//LocalDateTime 직렬화 의존성
 	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.3'
+
+	//validator
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

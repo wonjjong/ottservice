@@ -27,19 +27,15 @@ public class SecurityConfig {
                 .antMatchers("/v3/api-docs/**")
                 .antMatchers("/swagger-ui.html")
                 .antMatchers("/swagger-ui/**")
-                .antMatchers("/h2-console/**")
-                .antMatchers("/**/*.css")
-                .antMatchers("/**/*.js")
-                .antMatchers("/swagger-ui/**");
+                .antMatchers("/h2-console/**");
     }
 
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
-                .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/home/**","/","/adk/**").permitAll()
-//                .antMatchers("/adk/**").hasAnyRole("ADMIN")
+                .antMatchers("/adk/**").hasAnyRole("ADMIN")
                 .antMatchers("/order/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
                 .and()
