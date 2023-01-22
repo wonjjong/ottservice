@@ -26,13 +26,13 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Login</h3>
-                        <form action="#">
+                        <form method="post" th:action="@{/home/loginProcess}">
                             <div class="input__item">
-                                <input type="text" placeholder="Email address">
+                                <input type="text" placeholder="Email address" id="email" name="email">
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Password">
+                                <input type="text" placeholder="Password" id="password" name="password">
                                 <span class="icon_lock"></span>
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>
@@ -43,7 +43,7 @@
                 <div class="col-lg-6">
                     <div class="login__register">
                         <h3>Dont’t Have An Account?</h3>
-                        <a href="#" class="primary-btn">Register Now</a>
+                        <a th:href="@{/home/signup}" href="/home/signup" class="primary-btn">Register Now</a>
                     </div>
                 </div>
             </div>
@@ -53,8 +53,7 @@
                         <div class="login__social__links">
                             <span>or</span>
                             <ul>
-                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With
-                                    Facebook</a></li>
+                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With Facebook</a></li>
                                 <li><a th:href="@{/oauth2/authorization/google}" href="/oauth2/authorization/google" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
                                 <li><a style="background:yellow; color:black;" th:href="@{/oauth2/authorization/kakao}" href="/oauth2/authorization/kakao" class="google"><i class="fa fa-google"></i> Sign in With Kakao</a></li>
                                 <li><a style="background:green; color:black;" th:href="@{/oauth2/authorization/naver}" href="/oauth2/authorization/naver" class="google"><i class="fa fa-google"></i> Sign in With Naver</a></li>

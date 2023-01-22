@@ -1,14 +1,23 @@
 server:
   port : 8080
 
+wonjjong:
+  fileUploadPath: D:/test/
+
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # default : 1MB
+      max-request-size: 100MB #defatult : 10MB
+
+  messages:
+    basename: messages, errors
   profiles:
     active: dev #기본 활성 프로필
   config:
-    import: application-oauth.yml
+    import: application-oauth.yml, application-s3.yml
 
   jpa:
-    show_sql: true
     database-platform: H2
     hibernate:
       ddl-auto: create-drop
@@ -19,10 +28,12 @@ spring:
 
   datasource:
     hikari:
-      driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:tcp://localhost:9092/mem:testdb
+#      driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#      jdbc-url: jdbc:p6spy:h2:tcp://localhost/~/test;MODE=LEGACY;
+      jdbc-url: jdbc:h2:tcp://localhost/~/test;MODE=LEGACY;
       username: sa
       password:
+      driver-class-name: org.h2.Driver
 
 logging:
   level:
@@ -30,3 +41,12 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
+
+
+
+

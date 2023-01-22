@@ -37,7 +37,9 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a th:href="@{/home/login}" href="login.html"><span class="icon_profile"></span></a>
+                        <a sec:authorize="isAnonymous()"  th:href="@{/home/login}" href="login.html"><span class="icon_profile"></span></a>
+                        <a sec:authorize="isAuthenticated()"  th:href="@{/home/logout}" href="logout.html"><span sec:authentication="name"> </span></a>
+
                     </div>
                 </div>
             </div>

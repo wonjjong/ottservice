@@ -23,12 +23,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         /* application/x-www-form-urlencoded */
+
         return new CustomUserDetails(userRepository.findById(Long.valueOf(username)).
                 orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException")));
     }
 
     public Long saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user).getId();
-
     }
 }
