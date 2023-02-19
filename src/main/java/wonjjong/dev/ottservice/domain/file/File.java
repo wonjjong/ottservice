@@ -18,6 +18,10 @@ public class File extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "fileGroup_id", insertable = false, updatable = false)
+	private FileGroup fileGroup;
+
 	@Column
 	private String extension;
 
@@ -32,6 +36,5 @@ public class File extends BaseTimeEntity {
 
 	@Column
 	private String storedFilePath;
-
 
 }
